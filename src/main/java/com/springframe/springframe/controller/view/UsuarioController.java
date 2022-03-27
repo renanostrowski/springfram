@@ -21,14 +21,17 @@ public class UsuarioController {
     @Autowired
     private iUsuarioService iUsuarioService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/cadastrousuario")
-    public String index(){
-        return "/cadastros/usuario/cadastrousuario";
+    @RequestMapping(method = RequestMethod.GET, value = "/novo")
+    public String index(@ModelAttribute("usuario") UsuarioForm usuarioForm){
+        return "/cadastros/usuario/formuser";
     }
 
-    @PostMapping(value = "cadastrarUsuario")
-    public String salvarUsuario(@ModelAttribute("usuario") UsuarioForm usuarioForm){
-        iUsuarioService.salvarUsuario(usuarioForm);
+    @PostMapping(value = "/salvar")
+    public String salvarUsuario(@Valid Usuario usuarioForm, BindingResult result, Model model){
+        if (result.hasErrors()) {
+            return "/cadastros/usuario/novo";
+        }
+        iUsuarioService.salvarUsuario(new UsuarioForm(usuarioForm));
         return "redirect:/listarusuarios";
     }
 
@@ -46,7 +49,7 @@ public class UsuarioController {
 
         model.addAttribute("usuario", usuarioDTO);
 
-        return "/cadastros/usuario/cadastrousuario";
+        return "/cadastros/usuario/formuser";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/usuario/deletar/{email}")

@@ -14,6 +14,8 @@ public class UsuarioForm {
         this.email = usuario.getEmail();
     }
 
+    public UsuarioForm(){}
+
     public String getNome() {
         return nome;
     }

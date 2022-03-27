@@ -8,19 +8,19 @@
 </head>
 
 <body class="text-center">
-<form th:action="@{cadastrarUsuario}" method="post">
+<form action="#" th:action="@{/salvar}" th:object="${usuario}" method="post">
     <h2 class="h2 mb-3 font-weight-normal">Cadastrar usuário</h2>
     <!--<div>
         <div class="alert alert-danger">Usuário ou senha inválidos.</div>
     </div>-->
     <input name="nome" type="text" class="form-control padInput"
-           placeholder="Nome" autofocus="autofocus" required="true" th:field="*{usuario.nome}"/>
-    <input name="email" type="text" class="form-control padInput" th:field="*{usuario.email}"
-           placeholder="E-mail" autofocus="autofocus" required="true" />
-    <input name="senha" type="text" class="form-control padInput" th:field="*{usuario.senha}"
-           placeholder="Senha" autofocus="autofocus" required="true" />
+           placeholder="Nome" autofocus="autofocus" required="true" th:field="${usuario.nome}"/>
+    <input name="email" type="text" class="form-control padInput"
+           placeholder="E-mail" autofocus="autofocus" required="true" th:field="${usuario.email}"/>
+    <input name="senha" type="text" class="form-control padInput"
+           placeholder="Senha" autofocus="autofocus" required="true" th:field="${usuario.senha}"/>
 
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Gravar</button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Salvar</button>
 </form>
 </body>
 </html>

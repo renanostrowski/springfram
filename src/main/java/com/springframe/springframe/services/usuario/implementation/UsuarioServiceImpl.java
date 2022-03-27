@@ -1,4 +1,4 @@
-package com.springframe.springframe.services.usuario.implementarion;
+package com.springframe.springframe.services.usuario.implementation;
 
 import com.springframe.springframe.model.dto.UsuarioDTO;
 import com.springframe.springframe.model.entity.Usuario;
@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,8 +18,14 @@ public class UsuarioServiceImpl implements iUsuarioService {
     private iUsuarioRepository usuarioReposity;
 
     public UsuarioDTO salvarUsuario(UsuarioForm usuarioForm) {
-        Usuario usuario = usuarioReposity.save(usuarioForm.convert());
-        return new UsuarioDTO(usuario);
+        Usuario usuario = buscaUsuarioEmail(usuarioForm.getEmail());
+        if(usuario == null) {
+            usuario = usuarioReposity.save(usuarioForm.convert());
+            return new UsuarioDTO(usuario);
+        } else {
+            return null;
+        }
+
     }
 
     public void deletarUsuario(String email){
