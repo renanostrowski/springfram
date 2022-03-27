@@ -14,6 +14,8 @@ public class Usuario implements Serializable {
         this.adm = adm;
     }
 
+    public Usuario() {}
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "sq_usuario")
     private Long codigoUsuario;
