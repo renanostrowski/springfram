@@ -9,6 +9,7 @@
 
 <body class="text-center">
 <form action="#" th:action="@{/salvar}" th:object="${usuario}" method="post">
+    <span th:if="${error}"  th:text="${error}" style="color: red">Error</span>
     <h2 class="h2 mb-3 font-weight-normal">Cadastrar usuário</h2>
     <!--<div>
         <div class="alert alert-danger">Usuário ou senha inválidos.</div>

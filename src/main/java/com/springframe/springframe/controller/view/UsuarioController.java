@@ -1,5 +1,6 @@
 package com.springframe.springframe.controller.view;
 
+import com.springframe.springframe.exceptions.CustomErrorType;
 import com.springframe.springframe.model.dto.UsuarioDTO;
 import com.springframe.springframe.model.entity.Usuario;
 import com.springframe.springframe.model.form.UsuarioForm;
@@ -29,9 +30,15 @@ public class UsuarioController {
     @PostMapping(value = "/salvar")
     public String salvarUsuario(@Valid Usuario usuarioForm, BindingResult result, Model model){
         if (result.hasErrors()) {
-            return "/cadastros/usuario/novo";
+            return "/cadastros/usuario/formuser";
         }
-        iUsuarioService.salvarUsuario(new UsuarioForm(usuarioForm));
+        try{
+            iUsuarioService.salvarUsuario(new UsuarioForm(usuarioForm));
+        } catch (CustomErrorType e){
+            model.addAttribute("error", e.getMessage());
+            return "/cadastros/usuario/formuser";
+        }
+
         return "redirect:/listarusuarios";
     }
 

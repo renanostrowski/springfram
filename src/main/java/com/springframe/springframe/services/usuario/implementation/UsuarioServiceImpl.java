@@ -1,5 +1,6 @@
 package com.springframe.springframe.services.usuario.implementation;
 
+import com.springframe.springframe.exceptions.CustomErrorType;
 import com.springframe.springframe.model.dto.UsuarioDTO;
 import com.springframe.springframe.model.entity.Usuario;
 import com.springframe.springframe.model.form.UsuarioForm;
@@ -23,7 +24,7 @@ public class UsuarioServiceImpl implements iUsuarioService {
             usuario = usuarioReposity.save(usuarioForm.convert());
             return new UsuarioDTO(usuario);
         } else {
-            return null;
+            throw  new CustomErrorType("E-mail já cadastrado para outro usuário!");
         }
 
     }
@@ -32,6 +33,8 @@ public class UsuarioServiceImpl implements iUsuarioService {
         Usuario usuario = buscaUsuarioEmail(email);
         if(usuario != null) {
             usuarioReposity.delete(usuario);
+        } else {
+            throw  new CustomErrorType("Usuário que deseja excluir não existe!");
         }
     }
 
@@ -42,10 +45,6 @@ public class UsuarioServiceImpl implements iUsuarioService {
 
     public Usuario buscaUsuarioEmail(String email) {
         Usuario usuario = usuarioReposity.buscarPorEmail(email);
-        if (usuario == null) {
-            throw new IllegalArgumentException("Pessoa inválida.");
-        }
-
         return usuario;
     }
 }
