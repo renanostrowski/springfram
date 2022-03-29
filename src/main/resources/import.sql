@@ -1,0 +1,1 @@
+INSERT INTO municipio(codigoIBGE, nomeIBGE, codigoRegiao, pais) VALUES (4307005, 'Erechim', '2', 'Brasil');
