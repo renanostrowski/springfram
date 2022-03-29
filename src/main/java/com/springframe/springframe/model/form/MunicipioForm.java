@@ -9,7 +9,11 @@ public class MunicipioForm {
     private String nomeIBGE;
     private String codigoRegiao;
     private String pais;
+    private String sigla;
+    private String nome;
     private UnidadeFederativaForm unidadeFederativaForm;
+
+    public MunicipioForm(){}
 
     public MunicipioForm(Municipio municipio){
         this.codigoIBGE = municipio.getCodigoIBGE();
@@ -57,5 +61,25 @@ public class MunicipioForm {
 
     public void setPais(String pais) {
         this.pais = pais;
+    }
+
+    public String getSigla() {
+        return sigla;
+    }
+
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Municipio convert(){
+        return new Municipio(codigoIBGE, nomeIBGE, codigoRegiao, pais);
     }
 }

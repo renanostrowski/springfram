@@ -27,4 +27,8 @@ public class UnidadeFederativaForm {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public UnidadeFederativa convert() {
+        return new UnidadeFederativa(sigla, nome);
+    };
 }

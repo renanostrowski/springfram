@@ -7,11 +7,13 @@ public class UsuarioDTO {
     private Long codigoUsuario;
     private String nome;
     private String email;
+    private MunicipioDTO municipio;
 
     public UsuarioDTO(Usuario usuario){
         this.codigoUsuario = usuario.getCodigoUsuario();
         this.nome = usuario.getNome();
         this.email = usuario.getEmail();
+        this.municipio = new MunicipioDTO(usuario.getMunicipio());
     }
 
     public Long getCodigoUsuario() {
@@ -30,12 +32,19 @@ public class UsuarioDTO {
         this.nome = nome;
     }
 
-
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public MunicipioDTO getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(MunicipioDTO municipio) {
+        this.municipio = municipio;
     }
 }

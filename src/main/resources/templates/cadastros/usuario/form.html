@@ -8,7 +8,7 @@
 </head>
 
 <body class="text-center">
-<form action="#" th:action="@{/salvar}" th:object="${usuario}" method="post">
+<form action="#" th:action="@{/salvar}" th:object="${formUser}" method="post">
     <span th:if="${error}"  th:text="${error}" style="color: red">Error</span>
     <h2 class="h2 mb-3 font-weight-normal">Cadastrar usuário</h2>
     <!--<div>
@@ -20,6 +20,10 @@
            placeholder="E-mail" autofocus="autofocus" required="true" th:field="${usuario.email}"/>
     <input name="senha" type="text" class="form-control padInput"
            placeholder="Senha" autofocus="autofocus" required="true" th:field="${usuario.senha}"/>
+    <select id="pais" th:field="${municipios}" class="form-control padInput">
+        <option value="">Selecione o munícipio</option>
+        <option th:each="m : ${municipios}" th:value="${usuario.codigoIBGE}" th:text="${m.nomeIBGE}" selected="selected"></option>
+    </select>
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Salvar</button>
 </form>

@@ -8,26 +8,62 @@
 </head>
 
 <body class="text-center">
-<form action="#" th:action="@{/salvar}" th:object="${formUser}" method="post">
-    <span th:if="${error}"  th:text="${error}" style="color: red">Error</span>
-    <h2 class="h2 mb-3 font-weight-normal">Cadastrar usuário</h2>
-    <!--<div>
-        <div class="alert alert-danger">Usuário ou senha inválidos.</div>
-    </div>-->
-    <input name="nome" type="text" class="form-control padInput"
-           placeholder="Nome" autofocus="autofocus" required="true" th:field="${usuario.nome}"/>
-    <input name="email" type="text" class="form-control padInput"
-           placeholder="E-mail" autofocus="autofocus" required="true" th:field="${usuario.email}"/>
-    <input name="senha" type="text" class="form-control padInput"
-           placeholder="Senha" autofocus="autofocus" required="true" th:field="${usuario.senha}"/>
-    <select th:field="${municipios}" class="form-control padInput">
-        <option value=""> -- </option>
-        <option th:each="m : ${municipios}"
-                th:value="${m.codigoIBGE}"
-                th:text="${m.nomeIBGE}"/>
-    </select>
+    <div>
+        <form action="#" th:action="@{/salvar}" th:object="${form}" method="post">
+            <span th:if="${error}"  th:text="${error}" style="color: red">Error</span>
+            <h2 class="h2 mb-3 font-weight-normal">Cadastrar Cidade</h2>
+            <!--<div>
+                <div class="alert alert-danger">Usuário ou senha inválidos.</div>
+            </div>-->
+            <input name="codigoIBGE" type="text" class="form-control padInput"
+                   placeholder="Código IBGE" autofocus="autofocus" required="true" th:field="${form.codigoIBGE}"/>
+            <input name="nomeIBGE" type="text" class="form-control padInput"
+                   placeholder="Nome IBGE" autofocus="autofocus" required="true" th:field="${form.nomeIBGE}"/>
+            <input name="codigoRegiao" type="text" class="form-control padInput"
+                   placeholder="Código Região" autofocus="autofocus" required="true" th:field="${form.codigoRegiao}"/>
+            <input name="pais" type="text" class="form-control padInput"
+                   placeholder="País" autofocus="autofocus" required="true" th:field="${form.pais}"/>
+            <input name="pais" type="text" class="form-control padInput"
+                   placeholder="Estado" autofocus="autofocus" required="true" th:field="${form.nome}"/>
+            <input name="pais" type="text" class="form-control padInput"
+                   placeholder="UF" autofocus="autofocus" required="true" th:field="${form.sigla}"/>
 
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Salvar</button>
-</form>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Salvar</button>
+        </form>
+    </div>
+    <div style="margin-left: 50px; height: 100vh; margin-top: 0; margin-top: 280px;">
+        <div class="divTable">
+            <div class="text-center pad">
+                <h2 class="h2 mb-3 font-weight-normal">Lista de Cidades</h2>
+            </div>
+            <div class="text-center pad">
+                <table class="table table-sm form-control">
+                    <thead>
+                    <tr>
+                        <th scope="col" class="text-center pad">Código IBGE</th>
+                        <th scope="col" class="text-center pad">Nome IBGE</th>
+                        <th scope="col" class="text-center pad">Código Região</th>
+                        <th scope="col" class="text-center pad">País</th>
+                        <th scope="col" class="text-center pad">Estado</th>
+                        <th scope="col" class="text-center pad">UF</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each = "municipio : ${municipios}">
+                        <td th:Text = "${municipio.codigoIBGE}" style="LINE-HEIGHT:50px"></td>
+                        <td th:Text = "${municipio.codigoRegiao}" style="LINE-HEIGHT:50px"></td>
+                        <td th:Text = "${municipio.nomeIBGE}" style="LINE-HEIGHT:50px"></td>
+                        <td th:Text = "${municipio.pais}" style="LINE-HEIGHT:50px"></td>
+                        <td th:Text = "${municipio.nome}" style="LINE-HEIGHT:50px"></td>
+                        <td th:Text = "${municipio.sigla}" style="LINE-HEIGHT:50px"></td>
+                        <td style="LINE-HEIGHT:50px">
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -1,9 +1,12 @@
 package com.springframe.springframe.controller.view;
 
 import com.springframe.springframe.exceptions.CustomErrorType;
+import com.springframe.springframe.model.dto.MunicipioDTO;
 import com.springframe.springframe.model.dto.UsuarioDTO;
+import com.springframe.springframe.model.entity.Municipio;
 import com.springframe.springframe.model.entity.Usuario;
 import com.springframe.springframe.model.form.UsuarioForm;
+import com.springframe.springframe.services.usuario.interfaces.iMunicipioService;
 import com.springframe.springframe.services.usuario.interfaces.iUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.naming.Binding;
 import javax.validation.Valid;
@@ -19,35 +23,40 @@ import java.util.List;
 @Controller
 public class UsuarioController {
 
-    @Autowired
     private iUsuarioService iUsuarioService;
+    private iMunicipioService municipioService;
+
+    public UsuarioController(iUsuarioService usuarioService, iMunicipioService municipioService){
+        this.iUsuarioService = usuarioService;
+        this.municipioService = municipioService;
+    }
 
     @RequestMapping(method = RequestMethod.GET, value = "/novo")
-    public String index(@ModelAttribute("usuario") UsuarioForm usuarioForm){
-        return "/cadastros/usuario/formuser";
+    public String form(Model model){
+        UsuarioForm usuarioForm = new UsuarioForm();
+        model.addAttribute("formUser", usuarioForm);
+        List<MunicipioDTO> municipioDTOS = municipioService.listarMunicipios();
+        model.addAttribute("municipios", municipioDTOS);
+        model.addAttribute("usuario", new UsuarioForm());
+        return "/cadastros/usuario/form";
     }
 
     @PostMapping(value = "/salvar")
-    public String salvarUsuario(@Valid Usuario usuarioForm, BindingResult result, Model model){
+    public String salvarUsuario(UsuarioForm usuarioForm, BindingResult result, RedirectAttributes attr){
         if (result.hasErrors()) {
-            return "/cadastros/usuario/formuser";
+            return "/cadastros/usuario/form";
         }
         try{
-            iUsuarioService.salvarUsuario(new UsuarioForm(usuarioForm));
+            iUsuarioService.salvarUsuario(usuarioForm);
         } catch (CustomErrorType e){
-            model.addAttribute("error", e.getMessage());
-            return "/cadastros/usuario/formuser";
+            attr.addAttribute("error", e.getMessage());
+            return "/cadastros/usuario/form";
+        } catch (Exception e){
+            attr.addAttribute("error", "Erro não tratado!");
+            return "/cadastros/usuario/form";
         }
 
-        return "redirect:/listarusuarios";
-    }
-
-    @RequestMapping(method = RequestMethod.GET, value = "/listarusuarios")
-    public ModelAndView listarUsuarios(){
-        ModelAndView mView = new ModelAndView("/cadastros/usuario/listarusuario");
-        List<UsuarioDTO> usuarios = iUsuarioService.listarUsuarios();
-        mView.addObject("usuarios", usuarios);
-        return mView;
+        return "redirect:/list";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/usuario/alterar/{email}")
@@ -56,7 +65,7 @@ public class UsuarioController {
 
         model.addAttribute("usuario", usuarioDTO);
 
-        return "/cadastros/usuario/formuser";
+        return "/cadastros/usuario/form";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/usuario/deletar/{email}")
@@ -65,6 +74,14 @@ public class UsuarioController {
 
         if(usuario != null) iUsuarioService.deletarUsuario(email);
 
-        return "redirect:/listarusuarios";
+        return "redirect:/list";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/list")
+    public ModelAndView listarUsuarios(){
+        ModelAndView mView = new ModelAndView("/cadastros/usuario/list");
+        List<UsuarioDTO> usuarios = iUsuarioService.listarUsuarios();
+        mView.addObject("usuarios", usuarios);
+        return mView;
     }
 }

@@ -5,8 +5,21 @@ import javax.persistence.*;
 @Entity
 public class Municipio {
 
+    public Municipio(){
+
+    }
+
+    public Municipio(Long codigoIBGE, String nomeIBGE, String codigoRegiao, String pais){
+        this.codigoIBGE = codigoIBGE;
+        this.nomeIBGE = nomeIBGE;
+        this.codigoRegiao = codigoRegiao;
+        this.pais = pais;
+    }
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "sq_municipio")
+    @Column(name = "codigoMunicipio")
     private Long codigoMunicipio;
 
     @Column(name = "codigoIBGE")

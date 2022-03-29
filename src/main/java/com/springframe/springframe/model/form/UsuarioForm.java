@@ -7,11 +7,13 @@ public class UsuarioForm {
     private String nome;
     private String senha;
     private String email;
+    private Long codigoIBGE;
 
     public UsuarioForm(Usuario usuario){
         this.nome = usuario.getNome();
         this.senha = usuario.getSenha();
         this.email = usuario.getEmail();
+        this.codigoIBGE = usuario.getMunicipio().getCodigoIBGE();
     }
 
     public UsuarioForm(){}
@@ -38,6 +40,14 @@ public class UsuarioForm {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Long getCodigoIBGE() {
+        return codigoIBGE;
+    }
+
+    public void setCodigoIBGE(Long codigoIBGE) {
+        this.codigoIBGE = codigoIBGE;
     }
 
     public Usuario convert(){

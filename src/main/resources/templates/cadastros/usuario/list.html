@@ -18,12 +18,15 @@
                 <tr>
                     <th scope="col">Nome</th>
                     <th scope="col">E-mail</th>
+                    <th scope="col">Munícipio</th>
+                    <th scope="col">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
                     <tr th:each = "usuario : ${usuarios}">
                         <td th:Text = "${usuario.nome}" style="LINE-HEIGHT:50px"></td>
                         <td th:Text = "${usuario.email}" style="LINE-HEIGHT:50px"></td>
+                        <td th:Text = "${usuario.municipio.nomeIBGE}" style="LINE-HEIGHT:50px"></td>
                         <td style="LINE-HEIGHT:50px">
                             <a th:href="@{/usuario/alterar/{email}(email=${usuario.email})}" class="btn btn-primary">Alterar</a>
                             <a th:href="@{/usuario/deletar/{email}(email=${usuario.email})}" class="btn btn-danger">Excluir</a>

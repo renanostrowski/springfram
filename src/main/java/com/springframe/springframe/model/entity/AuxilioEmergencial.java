@@ -6,6 +6,15 @@ import java.util.Date;
 
 @Entity
 public class AuxilioEmergencial {
+    public AuxilioEmergencial(){};
+
+    public AuxilioEmergencial(Date dataConsulta, Municipio municipio, String numeroParcela, BigDecimal valorTotal){
+        this.dataConsulta = dataConsulta;
+        this.municipio = municipio;
+        this.numeroParcela = numeroParcela;
+        this.valorTotal = valorTotal;
+    }
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "sq_aux_emerg")

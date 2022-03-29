@@ -40,4 +40,8 @@ public class AuxilioEmergencialForm {
     public void setValorTotal(BigDecimal valorTotal) {
         this.valorTotal = valorTotal;
     }
+
+    public AuxilioEmergencial convert(){
+        return new AuxilioEmergencial();
+    }
 }

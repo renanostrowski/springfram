@@ -32,6 +32,10 @@ public class Usuario implements Serializable {
     @Column(name = "email")
     private String email;
 
+    @ManyToOne
+    @JoinColumn(name = "codigoMunicipio")
+    private Municipio municipio;
+
     @Column(name = "adm")
     private Boolean adm = false;
 
@@ -73,5 +77,13 @@ public class Usuario implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Municipio getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(Municipio municipio) {
+        this.municipio = municipio;
     }
 }

@@ -40,7 +40,7 @@ public class UsuarioServiceImpl implements iUsuarioService {
 
     public List<UsuarioDTO> listarUsuarios(){
         List<Usuario> usuarios = usuarioReposity.findAll();
-        return usuarios.stream().map(u -> new UsuarioDTO(u)).collect(Collectors.toList());
+        return usuarios.stream().map(UsuarioDTO::new).collect(Collectors.toList());
     }
 
     public Usuario buscaUsuarioEmail(String email) {

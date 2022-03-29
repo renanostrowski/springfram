@@ -5,6 +5,15 @@ import javax.persistence.*;
 @Entity
 public class UnidadeFederativa {
 
+    public UnidadeFederativa(){
+
+    }
+
+    public UnidadeFederativa(String uf, String nome){
+        this.nome = nome;
+        this.sigla = uf;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "sq_uf")
     private Long codigoUF;
