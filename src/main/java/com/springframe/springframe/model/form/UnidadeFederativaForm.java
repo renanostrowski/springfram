@@ -7,6 +7,8 @@ public class UnidadeFederativaForm {
     private String sigla;
     private String nome;
 
+    public UnidadeFederativaForm(){}
+
     public UnidadeFederativaForm(UnidadeFederativa unidadeFederativa){
         this.nome = unidadeFederativa.getNome();
         this.sigla = unidadeFederativa.getSigla();

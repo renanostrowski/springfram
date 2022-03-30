@@ -9,9 +9,7 @@ public class MunicipioForm {
     private String nomeIBGE;
     private String codigoRegiao;
     private String pais;
-    private String sigla;
-    private String nome;
-    private UnidadeFederativaForm unidadeFederativaForm;
+    private Long codigoUF;
 
     public MunicipioForm(){}
 
@@ -20,19 +18,19 @@ public class MunicipioForm {
         this.nomeIBGE = municipio.getNomeIBGE();
         this.codigoRegiao = municipio.getCodigoRegiao();
         this.pais = municipio.getPais();
-        this.unidadeFederativaForm = new UnidadeFederativaForm(municipio.getUnidadeFederativa());
+        this.codigoUF = municipio.getUnidadeFederativa().getCodigoUF();
     }
 
     public Long getCodigoIBGE() {
         return codigoIBGE;
     }
 
-    public UnidadeFederativaForm getUnidadeFederativaForm() {
-        return unidadeFederativaForm;
+    public Long getCodigoUF() {
+        return codigoUF;
     }
 
-    public void setUnidadeFederativaForm(UnidadeFederativaForm unidadeFederativaForm) {
-        this.unidadeFederativaForm = unidadeFederativaForm;
+    public void setCodigoUF(Long codigoUF) {
+        this.codigoUF = codigoUF;
     }
 
     public void setCodigoIBGE(Long codigoIBGE) {
@@ -61,22 +59,6 @@ public class MunicipioForm {
 
     public void setPais(String pais) {
         this.pais = pais;
-    }
-
-    public String getSigla() {
-        return sigla;
-    }
-
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public Municipio convert(){

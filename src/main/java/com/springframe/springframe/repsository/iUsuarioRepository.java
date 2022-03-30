@@ -10,6 +10,6 @@ import java.util.List;
 public interface iUsuarioRepository extends JpaRepository<Usuario, Long> {
     List<Usuario> findAll();
 
-    @Query("SELECT u FROM Usuario u where u.email = :email")
+    @Query("select u from Usuario u where u.email = :email")
     Usuario buscarPorEmail(String email);
 }

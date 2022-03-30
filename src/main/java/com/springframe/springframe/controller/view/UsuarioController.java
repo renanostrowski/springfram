@@ -6,9 +6,8 @@ import com.springframe.springframe.model.dto.UsuarioDTO;
 import com.springframe.springframe.model.entity.Municipio;
 import com.springframe.springframe.model.entity.Usuario;
 import com.springframe.springframe.model.form.UsuarioForm;
-import com.springframe.springframe.services.usuario.interfaces.iMunicipioService;
+import com.springframe.springframe.services.municipio.interfaces.iMunicipioService;
 import com.springframe.springframe.services.usuario.interfaces.iUsuarioService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,8 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.naming.Binding;
-import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -78,7 +75,7 @@ public class UsuarioController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/list")
-    public ModelAndView listarUsuarios(){
+    public ModelAndView listarUsuarios(Model model){
         ModelAndView mView = new ModelAndView("/cadastros/usuario/list");
         List<UsuarioDTO> usuarios = iUsuarioService.listarUsuarios();
         mView.addObject("usuarios", usuarios);

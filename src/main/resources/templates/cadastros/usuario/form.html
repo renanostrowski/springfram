@@ -20,9 +20,9 @@
            placeholder="E-mail" autofocus="autofocus" required="true" th:field="${usuario.email}"/>
     <input name="senha" type="text" class="form-control padInput"
            placeholder="Senha" autofocus="autofocus" required="true" th:field="${usuario.senha}"/>
-    <select id="pais" th:field="${municipios}" class="form-control padInput">
+    <select id="pais" th:field="*{codigoIBGE}" class="form-control padInput">
         <option value="">Selecione o munícipio</option>
-        <option th:each="m : ${municipios}" th:value="${usuario.codigoIBGE}" th:text="${m.nomeIBGE}" selected="selected"></option>
+        <option th:each="m : ${municipios}" th:value="${m.codigoIBGE}" th:field="*{codigoIBGE}" th:text="${m.nomeIBGE}" selected="selected"></option>
     </select>
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Salvar</button>

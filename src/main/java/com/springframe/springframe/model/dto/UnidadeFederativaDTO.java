@@ -7,10 +7,12 @@ public class UnidadeFederativaDTO {
     private String sigla;
     private String nome;
 
+    public UnidadeFederativaDTO(){}
+
     public UnidadeFederativaDTO(UnidadeFederativa unidadeFederativa){
         this.codigoUF = unidadeFederativa.getCodigoUF();
         this.nome = unidadeFederativa.getNome();
-        this.nome = unidadeFederativa.getNome();
+        this.sigla = unidadeFederativa.getSigla();
     }
 
     public Long getCodigoUF() {
