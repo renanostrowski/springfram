@@ -1,6 +1,5 @@
-package com.springframe.springframe.repsository;
+package com.springframe.springframe.reposository;
 
-import com.springframe.springframe.model.dto.UsuarioDTO;
 import com.springframe.springframe.model.entity.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

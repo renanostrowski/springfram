@@ -17,7 +17,7 @@ public class Usuario implements Serializable {
     public Usuario() {}
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "sq_usuario")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "sq_usuario")
     private Long codigoUsuario;
 
     @NotBlank(message = "Nome do usuário deve ser informado!")

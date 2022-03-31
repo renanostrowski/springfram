@@ -1,75 +1,5 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <script>
-
-        function limpa_formulário_cep() {
-                //Limpa valores do formulário de cep.
-                document.getElementById('rua').value=("");
-                document.getElementById('bairro').value=("");
-                document.getElementById('cidade').value=("");
-                document.getElementById('uf').value=("");
-                document.getElementById('ibge').value=("");
-        }
-
-        function meu_callback(conteudo) {
-        if (!("erro" in conteudo)) {
-            //Atualiza os campos com os valores.
-            document.getElementById('rua').value=(conteudo.logradouro);
-            document.getElementById('bairro').value=(conteudo.bairro);
-            document.getElementById('cidade').value=(conteudo.localidade);
-            document.getElementById('uf').value=(conteudo.uf);
-            document.getElementById('ibge').value=(conteudo.ibge);
-        } //end if.
-        else {
-            //CEP não Encontrado.
-            limpa_formulário_cep();
-            alert("CEP não encontrado.");
-        }
-    }
-
-    function pesquisacep(valor) {
-
-        //Nova variável "cep" somente com dígitos.
-        var cep = valor.replace(/\D/g, '');
-
-        //Verifica se campo cep possui valor informado.
-        if (cep != "") {
-
-            //Expressão regular para validar o CEP.
-            var validacep = /^[0-9]{8}$/;
-
-            //Valida o formato do CEP.
-            if(validacep.test(cep)) {
-
-                //Preenche os campos com "..." enquanto consulta webservice.
-                document.getElementById('rua').value="...";
-                document.getElementById('bairro').value="...";
-                document.getElementById('cidade').value="...";
-                document.getElementById('uf').value="...";
-                document.getElementById('ibge').value="...";
-
-                //Cria um elemento javascript.
-                var script = document.createElement('script');
-
-                //Sincroniza com o callback.
-                script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
-
-                //Insere script no documento e carrega o conteúdo.
-                document.body.appendChild(script);
-
-            } //end if.
-            else {
-                //cep é inválido.
-                limpa_formulário_cep();
-                alert("Formato de CEP inválido.");
-            }
-        } //end if.
-        else {
-            //cep sem valor, limpa formulário.
-            limpa_formulário_cep();
-        }
-    };
-    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Cadastrar usuário</title>
@@ -80,24 +10,22 @@
 <body class="text-center">
     <div>
         <form action="#" th:action="@{/municipio/salvar}" th:object="${form}" method="post">
-            <span th:if="${error}"  th:text="${error}" style="color: red">Error</span>
             <h2 class="h2 mb-3 font-weight-normal">Cadastrar Cidade</h2>
+            <span th:if="${error}"  th:text="${error}" style="color: red">Error</span>
             <!--<div>
                 <div class="alert alert-danger">Usuário ou senha inválidos.</div>
             </div>-->
-            <input id="cep" name="codigoIBGE" type="text" class="form-control padInput" onblur="pesquisacep(this.value);"
+            <input name="codigoIBGE" type="text" class="form-control padInput"
                    placeholder="Código IBGE" autofocus="autofocus" required="true" th:field="${form.codigoIBGE}"/>
-            <input id="ibge" name="codigoIBGE" type="text" class="form-control padInput"
-                   placeholder="Código IBGE" autofocus="autofocus" required="true" th:field="${form.codigoIBGE}"/>
-            <input id="cidade" name="nomeIBGE" type="text" class="form-control padInput"
+            <input name="nomeIBGE" type="text" class="form-control padInput"
                    placeholder="Nome IBGE" autofocus="autofocus" required="true" th:field="${form.nomeIBGE}"/>
             <input name="codigoRegiao" type="text" class="form-control padInput"
                    placeholder="Código Região" autofocus="autofocus" required="true" th:field="${form.codigoRegiao}"/>
-            <input  name="pais" type="text" class="form-control padInput"
+            <input name="pais" type="text" class="form-control padInput"
                    placeholder="País" autofocus="autofocus" required="true" th:field="${form.pais}"/>
-            <select id="uf" th:field="*{codigoUF}" class="form-control padInput">
+            <select id="pais" th:field="*{sigla}" class="form-control padInput">
                 <option value="">Selecione o estado</option>
-                <option th:each="u : ${ufs}" th:value="${u.codigoUF}" th:field="*{codigoUF}" th:text="${u.sigla}" selected="selected"></option>
+                <option th:each="u : ${ufs}" th:value="${u.sigla}" th:field="*{sigla}" th:text="${u.sigla}" selected="selected"></option>
             </select>
 
             <button class="btn btn-lg btn-primary btn-block" type="submit">Salvar</button>
@@ -129,7 +57,10 @@
                         <td th:Text = "${municipio.unidadeFederativaDTO.nome}" style="LINE-HEIGHT:50px"></td>
                         <td th:Text = "${municipio.unidadeFederativaDTO.sigla}" style="LINE-HEIGHT:50px"></td>
                         <td style="LINE-HEIGHT:50px">
-
+                        <td style="LINE-HEIGHT:50px">
+                            <a th:href="@{/municipio/alterar/{codigoibge}(codigoibge=${municipio.codigoIBGE})}" class="btn btn-primary">Alterar</a>
+                            <a th:href="@{/municipio/deletar/{codigoibge}(codigoibge=${municipio.codigoIBGE})}" class="btn btn-danger">Excluir</a>
+                        </td>
                         </td>
                     </tr>
                     </tbody>

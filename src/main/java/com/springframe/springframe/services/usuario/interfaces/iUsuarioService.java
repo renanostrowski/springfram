@@ -10,5 +10,5 @@ public interface iUsuarioService {
     UsuarioDTO salvarUsuario(UsuarioForm usuarioForm);
     void deletarUsuario(String email);
     List<UsuarioDTO> listarUsuarios();
-    Usuario buscaUsuarioEmail(String email);
+    UsuarioDTO buscaUsuarioEmail(String email);
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -39,17 +40,25 @@ public class UsuarioController {
     }
 
     @PostMapping(value = "/salvar")
-    public String salvarUsuario(UsuarioForm usuarioForm, BindingResult result, RedirectAttributes attr){
+    public String salvarUsuario(@Valid UsuarioForm usuarioForm, BindingResult result, Model model){
         if (result.hasErrors()) {
             return "/cadastros/usuario/form";
         }
         try{
             iUsuarioService.salvarUsuario(usuarioForm);
         } catch (CustomErrorType e){
-            attr.addAttribute("error", e.getMessage());
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("formUser", usuarioForm);
+            List<MunicipioDTO> municipioDTOS = municipioService.listarMunicipios();
+            model.addAttribute("municipios", municipioDTOS);
+            model.addAttribute("usuario", usuarioForm);
             return "/cadastros/usuario/form";
         } catch (Exception e){
-            attr.addAttribute("error", "Erro não tratado!");
+            model.addAttribute("error", "Erro não tratado!");
+            model.addAttribute("formUser", usuarioForm);
+            List<MunicipioDTO> municipioDTOS = municipioService.listarMunicipios();
+            model.addAttribute("municipios", municipioDTOS);
+            model.addAttribute("usuario", usuarioForm);
             return "/cadastros/usuario/form";
         }
 
@@ -58,8 +67,7 @@ public class UsuarioController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/usuario/alterar/{email}")
     public String alterarUsuario(@PathVariable("email") String email, Model model) {
-        Usuario usuarioDTO = iUsuarioService.buscaUsuarioEmail(email);
-
+        UsuarioDTO usuarioDTO = iUsuarioService.buscaUsuarioEmail(email);
         model.addAttribute("usuario", usuarioDTO);
 
         return "/cadastros/usuario/form";
@@ -67,7 +75,7 @@ public class UsuarioController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/usuario/deletar/{email}")
     public String deletarUsuario(@PathVariable("email") String email) {
-        Usuario usuario = iUsuarioService.buscaUsuarioEmail(email);
+        UsuarioDTO usuario = iUsuarioService.buscaUsuarioEmail(email);
 
         if(usuario != null) iUsuarioService.deletarUsuario(email);
 

@@ -9,8 +9,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 public interface iMunicipioService {
-    @Query("select m from Municipio m where m.codigoIBGE = :codigo")
-    Municipio findByCodigoIBGE(long codigo);
+    MunicipioDTO findByCodigoIBGE(long codigo);
+    MunicipioDTO findByNome(String nome);
     MunicipioDTO salvarMunicipio(MunicipioForm municipioForm);
+    void deletarMunicipio(long codigoIBGE);
     List<MunicipioDTO> listarMunicipios();
 }

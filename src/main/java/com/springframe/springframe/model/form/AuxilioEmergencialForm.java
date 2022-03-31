@@ -7,11 +7,13 @@ import java.math.BigDecimal;
 
 public class AuxilioEmergencialForm {
 
+    private Long codigoAuxilio;
     private MunicipioForm municipioForm;
     private String numeroParcela;
     private BigDecimal valorTotal;
 
     public AuxilioEmergencialForm(AuxilioEmergencial auxilioEmergencial){
+        this.codigoAuxilio = auxilioEmergencial.getCodigoAuxilio();
         this.municipioForm = new MunicipioForm(auxilioEmergencial.getMunicipio());
         this.numeroParcela = auxilioEmergencial.getNumeroParcela();
         this.valorTotal = auxilioEmergencial.getValorTotal();
@@ -43,5 +45,13 @@ public class AuxilioEmergencialForm {
 
     public AuxilioEmergencial convert(){
         return new AuxilioEmergencial();
+    }
+
+    public Long getCodigoAuxilio() {
+        return codigoAuxilio;
+    }
+
+    public void setCodigoAuxilio(Long codigoAuxilio) {
+        this.codigoAuxilio = codigoAuxilio;
     }
 }

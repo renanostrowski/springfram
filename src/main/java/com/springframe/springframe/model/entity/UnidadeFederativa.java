@@ -15,7 +15,7 @@ public class UnidadeFederativa {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "sq_uf")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "sq_uf")
     private Long codigoUF;
 
     @Column(name = "sigla", length = 2)

@@ -18,7 +18,7 @@ public class Municipio {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "sq_municipio")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "sq_municipio")
     @Column(name = "codigoMunicipio")
     private Long codigoMunicipio;
 

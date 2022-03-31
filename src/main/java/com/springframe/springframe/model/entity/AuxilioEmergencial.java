@@ -17,7 +17,7 @@ public class AuxilioEmergencial {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "sq_aux_emerg")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "sq_aux_emerg")
     private Long codigoAuxilio;
 
     @Column(name = "dataConsulta")

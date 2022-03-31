@@ -8,12 +8,14 @@ public class UsuarioDTO {
     private String nome;
     private String email;
     private MunicipioDTO municipio;
+    private boolean adm;
 
     public UsuarioDTO(Usuario usuario){
         this.codigoUsuario = usuario.getCodigoUsuario();
         this.nome = usuario.getNome();
         this.email = usuario.getEmail();
         this.municipio = new MunicipioDTO(usuario.getMunicipio());
+        this.adm = usuario.getAdm();
     }
 
     public Long getCodigoUsuario() {
@@ -46,5 +48,13 @@ public class UsuarioDTO {
 
     public void setMunicipio(MunicipioDTO municipio) {
         this.municipio = municipio;
+    }
+
+    public boolean isAdm() {
+        return adm;
+    }
+
+    public void setAdm(boolean adm) {
+        this.adm = adm;
     }
 }

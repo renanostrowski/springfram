@@ -4,7 +4,6 @@ import com.springframe.springframe.model.entity.Municipio;
 import com.springframe.springframe.model.entity.UnidadeFederativa;
 
 public class MunicipioDTO {
-    private Long codigoMunicipio;
     private Long codigoIBGE;
     private String nomeIBGE;
     private String codigoRegiao;
@@ -12,20 +11,11 @@ public class MunicipioDTO {
     private UnidadeFederativaDTO unidadeFederativaDTO;
 
     public MunicipioDTO(Municipio municipio) {
-        this.codigoMunicipio = municipio.getCodigoMunicipio();
         this.codigoIBGE = municipio.getCodigoIBGE();
         this.nomeIBGE = municipio.getNomeIBGE();
         this.codigoRegiao = municipio.getCodigoRegiao();
         this.pais = municipio.getPais();
         this.unidadeFederativaDTO = new UnidadeFederativaDTO(municipio.getUnidadeFederativa());
-    }
-
-    public Long getCodigoMunicipio() {
-        return codigoMunicipio;
-    }
-
-    public void setCodigoMunicipio(Long codigoMunicipio) {
-        this.codigoMunicipio = codigoMunicipio;
     }
 
     public Long getCodigoIBGE() {

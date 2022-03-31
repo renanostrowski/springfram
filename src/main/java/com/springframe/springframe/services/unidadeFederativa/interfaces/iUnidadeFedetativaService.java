@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 public interface iUnidadeFedetativaService {
-    UnidadeFederativa findById(long id);
+    UnidadeFederativaDTO findById(long id);
     List<UnidadeFederativaDTO> findAll();
     List<UnidadeFederativaDTO> ufCidades(List<MunicipioDTO> municipioDTOS);
 }
