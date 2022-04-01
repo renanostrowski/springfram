@@ -9,16 +9,26 @@ import com.springframe.springframe.reposository.iMunicipioRepository;
 import com.springframe.springframe.reposository.iUsuarioRepository;
 import com.springframe.springframe.services.municipio.interfaces.iMunicipioService;
 import com.springframe.springframe.services.usuario.interfaces.iUsuarioService;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
-@Service
+@Service("usuarioServiceImpl")
 public class UsuarioServiceImpl implements iUsuarioService {
 
     private iUsuarioRepository usuarioReposity;
     private iMunicipioRepository municipioRepository;
+
 
     public UsuarioServiceImpl(iUsuarioRepository usuarioReposity, iMunicipioRepository municipioRepository){
         this.usuarioReposity = usuarioReposity;
@@ -58,5 +68,11 @@ public class UsuarioServiceImpl implements iUsuarioService {
         Usuario usuario = usuarioReposity.buscarPorEmail(email);
         if(usuario == null) throw new CustomErrorType("Usuário Não encontrado!");
         return new UsuarioDTO(usuario);
+    }
+
+    public UsuarioForm alterarUsuario(String email) {
+        Usuario usuario = usuarioReposity.buscarPorEmail(email);
+        if(usuario == null) throw new CustomErrorType("Usuário Não encontrado!");
+        return new UsuarioForm(usuario);
     }
 }

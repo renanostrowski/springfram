@@ -8,6 +8,7 @@ import com.springframe.springframe.model.entity.Usuario;
 import com.springframe.springframe.model.form.UsuarioForm;
 import com.springframe.springframe.services.municipio.interfaces.iMunicipioService;
 import com.springframe.springframe.services.usuario.interfaces.iUsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,13 +22,11 @@ import java.util.List;
 @Controller
 public class UsuarioController {
 
+    @Autowired
     private iUsuarioService iUsuarioService;
+    @Autowired
     private iMunicipioService municipioService;
 
-    public UsuarioController(iUsuarioService usuarioService, iMunicipioService municipioService){
-        this.iUsuarioService = usuarioService;
-        this.municipioService = municipioService;
-    }
 
     @RequestMapping(method = RequestMethod.GET, value = "/novo")
     public String form(Model model){
@@ -67,8 +66,12 @@ public class UsuarioController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/usuario/alterar/{email}")
     public String alterarUsuario(@PathVariable("email") String email, Model model) {
-        UsuarioDTO usuarioDTO = iUsuarioService.buscaUsuarioEmail(email);
-        model.addAttribute("usuario", usuarioDTO);
+        UsuarioForm usuarioForm = iUsuarioService.alterarUsuario(email);
+
+        model.addAttribute("formUser", usuarioForm);
+        List<MunicipioDTO> municipioDTOS = municipioService.listarMunicipios();
+        model.addAttribute("municipios", municipioDTOS);
+        model.addAttribute("usuario", new UsuarioForm());
 
         return "/cadastros/usuario/form";
     }

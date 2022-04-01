@@ -26,3 +26,7 @@ body {
 .pad {
     margin-bottom: 8px;
 }
+
+label {
+    color: red;
+}

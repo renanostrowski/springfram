@@ -11,4 +11,5 @@ public interface iUsuarioService {
     void deletarUsuario(String email);
     List<UsuarioDTO> listarUsuarios();
     UsuarioDTO buscaUsuarioEmail(String email);
+    UsuarioForm alterarUsuario(String emaul);
 }
