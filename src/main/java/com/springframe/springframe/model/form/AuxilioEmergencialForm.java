@@ -4,27 +4,32 @@ package com.springframe.springframe.model.form;
 import com.springframe.springframe.model.entity.AuxilioEmergencial;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 public class AuxilioEmergencialForm {
 
     private Long codigoAuxilio;
-    private MunicipioForm municipioForm;
+    private Date dataConsulta;
+    private MunicipioForm municipio;
     private String numeroParcela;
-    private BigDecimal valorTotal;
+    private BigDecimal valor;
+
+    public AuxilioEmergencialForm(){}
 
     public AuxilioEmergencialForm(AuxilioEmergencial auxilioEmergencial){
         this.codigoAuxilio = auxilioEmergencial.getCodigoAuxilio();
-        this.municipioForm = new MunicipioForm(auxilioEmergencial.getMunicipio());
+        this.municipio = new MunicipioForm(auxilioEmergencial.getMunicipio());
         this.numeroParcela = auxilioEmergencial.getNumeroParcela();
-        this.valorTotal = auxilioEmergencial.getValorTotal();
+        this.dataConsulta = auxilioEmergencial.getDataConsulta();
+        this.valor = auxilioEmergencial.getValorTotal();
     }
 
-    public MunicipioForm getMunicipioForm() {
-        return municipioForm;
+    public MunicipioForm getMunicipio() {
+        return municipio;
     }
 
-    public void setMunicipioForm(MunicipioForm municipioForm) {
-        this.municipioForm = municipioForm;
+    public void setMunicipio(MunicipioForm municipio) {
+        this.municipio = municipio;
     }
 
     public String getNumeroParcela() {
@@ -35,12 +40,12 @@ public class AuxilioEmergencialForm {
         this.numeroParcela = numeroParcela;
     }
 
-    public BigDecimal getValorTotal() {
-        return valorTotal;
+    public BigDecimal getValor() {
+        return valor;
     }
 
-    public void setValorTotal(BigDecimal valorTotal) {
-        this.valorTotal = valorTotal;
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
     }
 
     public AuxilioEmergencial convert(){
@@ -49,6 +54,14 @@ public class AuxilioEmergencialForm {
 
     public Long getCodigoAuxilio() {
         return codigoAuxilio;
+    }
+
+    public Date getDataConsulta() {
+        return dataConsulta;
+    }
+
+    public void setDataConsulta(Date dataConsulta) {
+        this.dataConsulta = dataConsulta;
     }
 
     public void setCodigoAuxilio(Long codigoAuxilio) {

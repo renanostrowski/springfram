@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,16 +11,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
 </head>
 <body class="flex_wrap_center">
-    <main class="flex_wrap_center">
+    <main class="main flex_wrap_center">
         <div class="metade loginImg"></div>
         <div class="metade">
-            <form action="#" th:action="@{login}" method="post" class="flex_wrap_center">
+            <form th:action="@{/login}" method="post" class="flex_wrap_center">
                 <label> Nome:
-                    <input type="text" name="nome" id="nome">
+                    <input type="text" name="username" id="username">
                 </label>
       
                   <label> Senha:
-                      <input type="password" name="passwd" id="passwd">
+                      <input type="password" name="password" id="password">
                   </label>
       
                   <input type="submit" value="Login">

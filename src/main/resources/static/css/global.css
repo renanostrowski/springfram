@@ -84,5 +84,10 @@ input[type="submit"]:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-position: right top;
+}
+
+.flex_wrap_between_center {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

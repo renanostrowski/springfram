@@ -10,16 +10,18 @@ public class AuxilioEmergencialDTO {
 
     private Long codigoAuxilio;
     private Date dataConsulta;
-    private MunicipioDTO municipioDTO;
+    private MunicipioDTO municipio;
     private String numeroParcela;
-    private BigDecimal valorTotal;
+    private BigDecimal valor;
+
+    public AuxilioEmergencialDTO(){}
 
     public AuxilioEmergencialDTO(AuxilioEmergencial auxilioEmergencial){
         this.codigoAuxilio = auxilioEmergencial.getCodigoAuxilio();
-        this.municipioDTO = new MunicipioDTO(auxilioEmergencial.getMunicipio());
+        this.municipio = new MunicipioDTO(auxilioEmergencial.getMunicipio());
         this.dataConsulta = auxilioEmergencial.getDataConsulta();
         this.numeroParcela = auxilioEmergencial.getNumeroParcela();
-        this.valorTotal = auxilioEmergencial.getValorTotal();
+        this.valor = auxilioEmergencial.getValorTotal();
     }
 
     public Long getCodigoAuxilio() {
@@ -38,12 +40,12 @@ public class AuxilioEmergencialDTO {
         this.dataConsulta = dataConsulta;
     }
 
-    public MunicipioDTO getMunicipioDTO() {
-        return municipioDTO;
+    public MunicipioDTO getMunicipio() {
+        return municipio;
     }
 
-    public void setMunicipioDTO(MunicipioDTO municipioDTO) {
-        this.municipioDTO = municipioDTO;
+    public void setMunicipio(MunicipioDTO municipio) {
+        this.municipio = municipio;
     }
 
     public String getNumeroParcela() {
@@ -54,11 +56,11 @@ public class AuxilioEmergencialDTO {
         this.numeroParcela = numeroParcela;
     }
 
-    public BigDecimal getValorTotal() {
-        return valorTotal;
+    public BigDecimal getValor() {
+        return valor;
     }
 
-    public void setValorTotal(BigDecimal valorTotal) {
-        this.valorTotal = valorTotal;
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
     }
 }
