@@ -33,6 +33,17 @@ public class AuxilioEmergencial {
     @Column(name = "valorTotal")
     private BigDecimal valorTotal;
 
+    @Column(name = "anoMes")
+    private String anoMes;
+
+    public String getAnoMes() {
+        return anoMes;
+    }
+
+    public void setAnoMes(String anoMes) {
+        this.anoMes = anoMes;
+    }
+
     public Long getCodigoAuxilio() {
         return codigoAuxilio;
     }

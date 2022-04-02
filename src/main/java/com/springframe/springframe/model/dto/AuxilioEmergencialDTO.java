@@ -13,6 +13,7 @@ public class AuxilioEmergencialDTO {
     private MunicipioDTO municipio;
     private String numeroParcela;
     private BigDecimal valor;
+    private String anoMes;
 
     public AuxilioEmergencialDTO(){}
 
@@ -22,6 +23,15 @@ public class AuxilioEmergencialDTO {
         this.dataConsulta = auxilioEmergencial.getDataConsulta();
         this.numeroParcela = auxilioEmergencial.getNumeroParcela();
         this.valor = auxilioEmergencial.getValorTotal();
+        this.anoMes = auxilioEmergencial.getAnoMes();
+    }
+
+    public String getAnoMes() {
+        return anoMes;
+    }
+
+    public void setAnoMes(String anoMes) {
+        this.anoMes = anoMes;
     }
 
     public Long getCodigoAuxilio() {

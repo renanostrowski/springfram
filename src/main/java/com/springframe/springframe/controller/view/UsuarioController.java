@@ -39,7 +39,7 @@ public class UsuarioController {
     }
 
     @PostMapping(value = "/salvar")
-    public String salvarUsuario(@Valid UsuarioForm usuarioForm, BindingResult result, Model model){
+    public String salvarUsuario(UsuarioForm usuarioForm, BindingResult result, Model model){
         if (result.hasErrors()) {
             return "/cadastros/usuario/form";
         }

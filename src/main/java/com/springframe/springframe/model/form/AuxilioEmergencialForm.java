@@ -13,6 +13,7 @@ public class AuxilioEmergencialForm {
     private MunicipioForm municipio;
     private String numeroParcela;
     private BigDecimal valor;
+    private String anoMes;
 
     public AuxilioEmergencialForm(){}
 
@@ -22,6 +23,15 @@ public class AuxilioEmergencialForm {
         this.numeroParcela = auxilioEmergencial.getNumeroParcela();
         this.dataConsulta = auxilioEmergencial.getDataConsulta();
         this.valor = auxilioEmergencial.getValorTotal();
+        this.anoMes = auxilioEmergencial.getAnoMes();
+    }
+
+    public String getAnoMes() {
+        return anoMes;
+    }
+
+    public void setAnoMes(String anoMes) {
+        this.anoMes = anoMes;
     }
 
     public MunicipioForm getMunicipio() {
